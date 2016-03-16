@@ -213,14 +213,14 @@ test sources, resources, test resources, generated sources, etc).
 * Run tests to verify your installation
 
 ### Release process:
-* Create a new release branch based on a previous release branch, so plugin.xml will have the change notes up to the last release. E.g. `git checkout -b 1.3.14 1.3.13`
-* Merge the release branch with the latest master. `git merge master`
+* Create a new release branch from the latest master. E.g. `git checkout -b 1.3.14`
 * In plugin.xml:
   * Update `<version>`. E.g. `1.3.14`
   * Make sure of since/until build number for target IDEA versions.
   * Add the changes to `<change-notes>`.
-* Push the change, and make sure travis ci is green.
-* Create git tag with release number. E.g. `git tag release_1.3.14`
+* Submit review with green Travis CI.
+* Once shipit, patch the change in master and push to upstream.
+* Create git tag with release number in master. E.g. `git tag release_1.3.14`
 * Push the tag. E.g. `git push upstream release_1.3.14`. Fill out the release notes on github.
 * Distribution:
   * Build -> Build Artifacts -> pants -> rebuild. Artifacts will be in `out/artifacts/pants`.
