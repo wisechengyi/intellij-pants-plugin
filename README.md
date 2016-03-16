@@ -223,6 +223,7 @@ test sources, resources, test resources, generated sources, etc).
 * Create git tag with release number in master. E.g. `git tag release_1.3.14`
 * Push the tag. E.g. `git push upstream release_1.3.14`. Fill out the release notes on github.
 * Distribution:
+  * Create an account at https://account.jetbrains.com/login. Request access to the plugin repo via https://pantsbuild.github.io/howto_contribute.html#join-the-conversation.
   * Build -> Build Artifacts -> pants -> rebuild. Artifacts will be in `out/artifacts/pants`.
   * Zip `out/artifacts/pants` folder into `pants.zip`.
   * Validate the plugin manually in IntelliJ: Preferences -> Plugins -> Install from disk -> pick newly created `pants.zip`.
