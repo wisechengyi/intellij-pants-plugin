@@ -216,6 +216,7 @@ test sources, resources, test resources, generated sources, etc).
 * Create a new release branch based on a previous release branch, so plugin.xml will have the change notes up to the last release. E.g. `git checkout -b 1.3.14 1.3.13`
 * Merge the release branch with the latest master. `git merge master`
 * In plugin.xml:
+  * Update `<version>`. E.g. `1.3.14`
   * Make sure of since/until build number for target IDEA versions.
   * Add the changes to `<change-notes>`.
 * Push the change, and make sure travis ci is green.
