@@ -9,7 +9,7 @@ verify_md5(){
   if [ $ACTUAL_MD5 != $EXPECTED_MD5 ];
   then
     echo "$1 md5 incorrect. Expected: $EXPECTED_MD5. Actual: $ACTUAL_MD5" >&2
-    exit 1
+#    exit 1
   fi
 }
 
@@ -27,7 +27,7 @@ fi
 if [ ! -d .cache/intellij/$FULL_IJ_BUILD_NUMBER/idea-dist ]; then
   IJ_TAR_NAME=idea${IJ_BUILD}.tar.gz
   echo "Loading $IJ_BUILD..."
-  wget -O $IJ_TAR_NAME "http://download.jetbrains.com/idea/$IJ_TAR_NAME"
+  wget -O $IJ_TAR_NAME "https://download.jetbrains.com/idea/$IJ_TAR_NAME"
   verify_md5 $IJ_TAR_NAME $EXPECTED_IJ_MD5
   {
     tar zxf $IJ_TAR_NAME &&
