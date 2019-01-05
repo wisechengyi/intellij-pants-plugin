@@ -148,6 +148,7 @@
 
     <treeStructureProvider implementation="com.twitter.intellij.pants.projectview.PantsTreeStructureProvider"/>
     <projectViewPane implementation="com.twitter.intellij.pants.projectview.ProjectFilesViewPane"/>
+    <projectViewPane implementation="com.twitter.intellij.pants.projectview.ProjectFilesViewPaneV2"/>
 
     <toolWindow id="Pants" anchor="right" icon="PantsIcons.Icon"
                 factoryClass="com.twitter.intellij.pants.ui.PantsToolWindowFactory"
