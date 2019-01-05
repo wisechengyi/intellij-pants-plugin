@@ -185,7 +185,7 @@ public class ProjectFilesViewPaneV2 extends AbstractProjectViewPSIPane {
   // should be first
   @Override
   public int getWeight() {
-    return 0;
+    return 300;
   }
 
   private final class ProjectViewTreeUpdater extends AbstractTreeUpdater {
