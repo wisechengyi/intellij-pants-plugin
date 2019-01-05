@@ -11,6 +11,7 @@ import com.intellij.ide.FileSelectInContext;
 import com.intellij.ide.SelectInContext;
 import com.intellij.ide.SelectInTarget;
 import com.intellij.ide.projectView.ProjectView;
+import com.intellij.ide.projectView.impl.ProjectViewPane;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.externalSystem.model.DataNode;
@@ -263,7 +264,7 @@ public class PantsSystemProjectResolver implements ExternalSystemProjectResolver
           projectWindow.show(new Runnable() {
             @Override
             public void run() {
-              ProjectView.getInstance(myProject).changeView(ProjectFilesViewPane.ID);
+              ProjectView.getInstance(myProject).changeView(ProjectViewPane.ID);
               // Disable directory focus as it may cause too much stress when
               // there is heavy indexing load right after project import.
               // https://youtrack.jetbrains.com/issue/IDEA-204959

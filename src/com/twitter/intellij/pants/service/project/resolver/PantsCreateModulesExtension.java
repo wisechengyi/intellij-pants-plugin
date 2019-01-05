@@ -8,6 +8,7 @@ import com.intellij.openapi.application.ModalityState;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.externalSystem.model.DataNode;
 import com.intellij.openapi.externalSystem.model.ProjectKeys;
+import com.intellij.openapi.externalSystem.model.project.ContentRootData;
 import com.intellij.openapi.externalSystem.model.project.ModuleData;
 import com.intellij.openapi.externalSystem.model.project.ProjectData;
 import com.intellij.openapi.module.ModuleTypeId;
@@ -88,6 +89,9 @@ public class PantsCreateModulesExtension implements PantsResolverExtension {
         );
       modules.put(targetName, moduleData);
     }
+
+    String rootTargetName = "BuildRoot";
+    modules.put(rootTargetName, createBuildRootModuleData(projectDataNode, rootTargetName, executor));
   }
 
   private void getDepthToImportFromUser(final int maxDepth) {
@@ -149,6 +153,44 @@ public class PantsCreateModulesExtension implements PantsResolverExtension {
     metadata.setTargetAddressInfoSet(targetInfo.getAddressInfos());
     metadata.setLibraryExcludes(targetInfo.getExcludes());
     moduleDataNode.createChild(TargetMetadata.KEY, metadata);
+
+    return moduleDataNode;
+  }
+
+  @NotNull
+  private DataNode<ModuleData> createBuildRootModuleData(
+    @NotNull DataNode<ProjectData> projectInfoDataNode,
+    @NotNull String targetName,
+    @NotNull PantsCompileOptionsExecutor executor
+  ) {
+
+    final ModuleData moduleData = new ModuleData(
+      targetName,
+      PantsConstants.SYSTEM_ID,
+      ModuleTypeId.JAVA_MODULE,
+      targetName,
+      projectInfoDataNode.getData().getIdeProjectFileDirectoryPath(),
+      executor.getBuildRoot().getAbsolutePath()
+    );
+
+    final DataNode<ModuleData> moduleDataNode = projectInfoDataNode.createChild(ProjectKeys.MODULE, moduleData);
+    moduleDataNode
+      .createChild(ProjectKeys.CONTENT_ROOT, new ContentRootData(PantsConstants.SYSTEM_ID, executor.getBuildRoot().getAbsolutePath()));
+    //final TargetMetadata metadata = new TargetMetadata(PantsConstants.SYSTEM_ID, moduleName);
+    //metadata.setTargetAddresses(
+    //  ContainerUtil.map(
+    //    targetInfo.getAddressInfos(),
+    //    new Function<TargetAddressInfo, String>() {
+    //      @Override
+    //      public String fun(TargetAddressInfo info) {
+    //        return info.getTargetAddress();
+    //      }
+    //    }
+    //  )
+    //);
+    //metadata.setTargetAddressInfoSet(targetInfo.getAddressInfos());
+    //metadata.setLibraryExcludes(targetInfo.getExcludes());
+    //moduleDataNode.createChild(TargetMetadata.KEY, metadata);
 
     return moduleDataNode;
   }
