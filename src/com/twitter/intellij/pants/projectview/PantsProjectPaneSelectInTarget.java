@@ -24,7 +24,7 @@ public class PantsProjectPaneSelectInTarget extends ProjectViewSelectInTarget {
 
   @Override
   public String getMinorViewId() {
-    return ProjectFilesViewPaneV2.ID;
+    return ProjectFilesViewPane.ID;
   }
 
   @Override
