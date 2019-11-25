@@ -18,8 +18,8 @@ public class MetricsUnitTest extends TestCase {
 
   @Override
   public void tearDown() throws Exception {
-    System.clearProperty(PantsMetrics.SYSTEM_PROPERTY_METRICS_ENABLE);
     super.tearDown();
+    System.clearProperty(PantsMetrics.SYSTEM_PROPERTY_METRICS_ENABLE);
   }
 
   public void testSanity() throws InterruptedException {
